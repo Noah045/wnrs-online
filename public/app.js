@@ -150,11 +150,17 @@ function render(prev, s) {
   const myTurn = s.turnPlayerId === me.id;
   const showStart = !s.started;
   const showReset = s.finished;
+  const hasCard = !!s.currentCard;
+  const isWildcard = hasCard && s.currentCard.type === "wildcard";
+  // Drawing is available when: no card up yet, OR the current card is a wildcard
+  // (wildcards don't pass the turn — the same player draws their actual question next).
+  const canDraw = s.started && !s.finished && s.cardsRemaining > 0 && (!hasCard || isWildcard);
 
   els.btnStart.classList.toggle("hidden", !showStart || s.finished);
   els.btnReset.classList.toggle("hidden", !showReset);
-  els.btnDraw.classList.toggle("hidden", !s.started || s.finished || !!s.currentCard);
-  els.btnNext.classList.toggle("hidden", !(s.started && s.currentCard && s.currentCard.type === "question" && myTurn));
+  els.btnDraw.classList.toggle("hidden", !canDraw);
+  els.btnDraw.textContent = isWildcard ? "draw your question" : "draw card";
+  els.btnNext.classList.toggle("hidden", !(s.started && hasCard && s.currentCard.type === "question" && myTurn));
   els.btnLevelUp.classList.toggle("hidden", !(s.started && !s.finished && s.cardsRemaining === 0));
 
   // Reset levelup button text on level change

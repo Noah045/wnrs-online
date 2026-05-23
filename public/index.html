@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>we're not really strangers — online</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- LANDING -->
+    <section id="view-landing" class="view">
+      <div class="hero">
+        <p class="eyebrow">a game inspired by</p>
+        <h1>we're not<br/>really strangers</h1>
+        <p class="sub">Three levels. Increasingly honest questions. Play online with the people you want to actually know.</p>
+      </div>
+
+      <div class="card-stack">
+        <div class="mini-card mini-1">level 01<br/><span>perception</span></div>
+        <div class="mini-card mini-2">level 02<br/><span>connection</span></div>
+        <div class="mini-card mini-3">level 03<br/><span>reflection</span></div>
+      </div>
+
+      <div class="panel">
+        <label>Your name</label>
+        <input id="name-input" type="text" maxlength="24" placeholder="how do you want to be seen?" autocomplete="off" />
+
+        <div class="actions">
+          <button id="btn-create" class="primary">create a room</button>
+          <div class="or">or</div>
+          <div class="join">
+            <input id="code-input" type="text" maxlength="4" placeholder="ROOM" autocomplete="off" />
+            <button id="btn-join">join</button>
+          </div>
+        </div>
+        <p id="landing-error" class="error"></p>
+      </div>
+
+      <footer>three levels. no judgement. take your time.</footer>
+    </section>
+
+    <!-- ROOM / GAME -->
+    <section id="view-game" class="view hidden">
+      <header class="room-header">
+        <div class="room-id">
+          <span class="label">room</span>
+          <span id="room-code">----</span>
+          <button id="btn-copy">copy invite link</button>
+        </div>
+        <div class="players-bar" id="players-bar"></div>
+      </header>
+
+      <div class="level-banner" id="level-banner">
+        <div class="level-name" id="level-name">level 01 · perception</div>
+        <div class="level-tagline" id="level-tagline"></div>
+        <div class="level-progress" id="level-progress"></div>
+      </div>
+
+      <div class="stage">
+        <div id="card" class="card-deck">
+          <div class="card-face card-back">
+            <div class="back-label">we're not<br/>really strangers</div>
+            <div class="back-level" id="back-level">level 01</div>
+          </div>
+        </div>
+
+        <p id="turn-indicator" class="turn-indicator"></p>
+
+        <div class="controls">
+          <button id="btn-draw" class="primary">draw card</button>
+          <button id="btn-next" class="ghost hidden">next turn</button>
+          <button id="btn-levelup" class="ghost hidden">i'm ready for the next level</button>
+          <button id="btn-start" class="primary hidden">start game</button>
+          <button id="btn-reset" class="ghost hidden">play again</button>
+        </div>
+
+        <p id="hint" class="hint"></p>
+      </div>
+    </section>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>

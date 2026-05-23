@@ -1,0 +1,205 @@
+:root {
+  --cream: #f4ece2;
+  --cream-2: #ede0d0;
+  --ink: #1a1410;
+  --ink-soft: #4a3a30;
+  --red: #b94a3d;
+  --red-deep: #7a261c;
+  --shadow: 0 24px 60px -20px rgba(70, 20, 12, 0.35);
+}
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+body {
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(185,74,61,0.18), transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, rgba(122,38,28,0.12), transparent 60%),
+    var(--cream);
+}
+
+#app { max-width: 880px; margin: 0 auto; padding: 32px 20px 80px; }
+.hidden { display: none !important; }
+.view { animation: fadein 0.4s ease both; }
+
+@keyframes fadein { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* LANDING */
+.hero { text-align: center; padding: 40px 0 16px; }
+.eyebrow {
+  letter-spacing: 0.32em; text-transform: uppercase; font-size: 11px;
+  color: var(--ink-soft); margin: 0 0 12px;
+}
+h1 {
+  font-family: 'DM Serif Display', serif;
+  font-weight: 400;
+  font-size: clamp(40px, 8vw, 72px);
+  line-height: 0.95;
+  margin: 0 0 14px;
+  color: var(--red-deep);
+  letter-spacing: -0.02em;
+}
+.sub { max-width: 480px; margin: 0 auto; color: var(--ink-soft); line-height: 1.5; }
+
+.card-stack {
+  display: flex; justify-content: center; gap: 16px; margin: 36px 0 28px;
+  perspective: 1200px;
+}
+.mini-card {
+  width: 110px; height: 150px; border-radius: 14px;
+  display: flex; flex-direction: column; justify-content: flex-end; padding: 14px;
+  color: var(--cream); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  box-shadow: var(--shadow);
+  transform-style: preserve-3d;
+  transition: transform 0.4s ease;
+}
+.mini-card span { font-family: 'DM Serif Display', serif; font-size: 18px; text-transform: none; letter-spacing: 0; font-weight: 400; }
+.mini-1 { background: linear-gradient(160deg, #d89880, #b94a3d); transform: rotate(-6deg) translateY(8px); }
+.mini-2 { background: linear-gradient(160deg, #c4634f, #8a2e22); transform: rotate(0deg); }
+.mini-3 { background: linear-gradient(160deg, #7a261c, #3d130d); transform: rotate(6deg) translateY(8px); }
+.card-stack:hover .mini-1 { transform: rotate(-10deg) translateY(0); }
+.card-stack:hover .mini-3 { transform: rotate(10deg) translateY(0); }
+
+.panel {
+  background: var(--cream-2);
+  border-radius: 18px;
+  padding: 24px;
+  max-width: 460px;
+  margin: 0 auto;
+  box-shadow: 0 4px 20px -10px rgba(0,0,0,0.15);
+}
+label { display: block; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 8px; }
+input[type="text"] {
+  width: 100%; padding: 14px 16px; border-radius: 10px;
+  border: 1.5px solid #d8c8b8; background: var(--cream); color: var(--ink);
+  font-size: 16px; font-family: inherit;
+  outline: none; transition: border-color 0.2s;
+}
+input[type="text"]:focus { border-color: var(--red); }
+.actions { margin-top: 18px; display: flex; flex-direction: column; gap: 12px; }
+.or { text-align: center; color: var(--ink-soft); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; }
+.join { display: flex; gap: 8px; }
+.join input { text-transform: uppercase; letter-spacing: 0.3em; text-align: center; font-weight: 600; }
+.join button { flex-shrink: 0; }
+
+button {
+  cursor: pointer; font-family: inherit; font-weight: 600; font-size: 15px;
+  padding: 14px 22px; border-radius: 10px; border: none;
+  transition: transform 0.1s, background 0.2s, color 0.2s;
+}
+button:active { transform: translateY(1px); }
+.primary { background: var(--red); color: var(--cream); }
+.primary:hover { background: var(--red-deep); }
+.ghost { background: transparent; color: var(--ink-soft); border: 1.5px solid #d8c8b8; }
+.ghost:hover { color: var(--ink); border-color: var(--ink-soft); }
+
+.error { color: var(--red-deep); font-size: 14px; margin: 12px 0 0; min-height: 1em; }
+footer { text-align: center; color: var(--ink-soft); font-size: 12px; margin-top: 40px; letter-spacing: 0.05em; }
+
+/* GAME */
+.room-header {
+  display: flex; flex-direction: column; gap: 12px;
+  margin-bottom: 20px;
+}
+.room-id { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.room-id .label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); }
+#room-code { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--red-deep); letter-spacing: 0.1em; }
+#btn-copy { background: transparent; color: var(--ink-soft); padding: 6px 12px; font-size: 13px; border: 1.5px solid #d8c8b8; border-radius: 8px; }
+#btn-copy:hover { color: var(--ink); border-color: var(--ink-soft); }
+
+.players-bar { display: flex; gap: 8px; flex-wrap: wrap; }
+.player-chip {
+  background: var(--cream-2); padding: 6px 12px; border-radius: 999px; font-size: 13px;
+  border: 1.5px solid transparent; transition: border-color 0.2s;
+}
+.player-chip.turn { border-color: var(--red); color: var(--red-deep); font-weight: 600; }
+.player-chip.voted::after { content: " ✓"; color: var(--red); }
+
+.level-banner {
+  text-align: center; margin: 8px 0 24px; padding: 18px;
+  background: var(--cream-2); border-radius: 14px;
+  transition: background 0.6s ease;
+}
+.level-name { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--red-deep); }
+.level-tagline { font-size: 14px; color: var(--ink-soft); margin-top: 4px; }
+.level-progress { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); margin-top: 8px; }
+
+.stage { text-align: center; }
+.card-deck {
+  position: relative;
+  width: min(340px, 88vw); height: min(480px, 70vh);
+  margin: 12px auto 24px;
+  perspective: 1400px;
+}
+.card-face {
+  position: absolute; inset: 0;
+  border-radius: 22px;
+  padding: 36px 28px;
+  display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+  color: var(--cream);
+  box-shadow: var(--shadow);
+  backface-visibility: hidden;
+  transition: transform 0.6s cubic-bezier(0.6, 0, 0.2, 1);
+}
+.card-back {
+  background: linear-gradient(160deg, #b94a3d, #5a1a14);
+  background-image:
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0 12px, transparent 12px 24px),
+    linear-gradient(160deg, #b94a3d, #5a1a14);
+}
+.card-back .back-label {
+  font-family: 'DM Serif Display', serif; font-size: 30px; line-height: 1.1; letter-spacing: -0.01em;
+}
+.card-back .back-level {
+  margin-top: 14px; font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; opacity: 0.8;
+}
+.card-front {
+  background: linear-gradient(160deg, #f0d8c8, #d89880);
+  color: var(--ink);
+  transform: rotateY(180deg);
+}
+.card-front.q-level-2 { background: linear-gradient(160deg, #e8b8a8, #b94a3d); color: var(--cream); }
+.card-front.q-level-3 { background: linear-gradient(160deg, #b94a3d, #3d130d); color: var(--cream); }
+.card-front.wildcard { background: linear-gradient(160deg, #f4ece2, #d8c8b8); color: var(--ink); border: 2px dashed var(--red); }
+.card-front.level-end { background: linear-gradient(160deg, #2a1410, #1a0a08); color: var(--cream); }
+
+.card-tag {
+  position: absolute; top: 22px; left: 22px;
+  font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; opacity: 0.7;
+}
+.card-text {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(22px, 4.5vw, 30px);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.card-deck.flipped .card-back { transform: rotateY(180deg); }
+.card-deck.flipped .card-front { transform: rotateY(360deg); }
+
+.turn-indicator {
+  font-size: 14px; color: var(--ink-soft); margin: 0 0 16px; min-height: 1.4em;
+}
+.controls { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.hint { color: var(--ink-soft); font-size: 13px; margin-top: 14px; min-height: 1em; }
+
+.toast {
+  position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
+  background: var(--ink); color: var(--cream);
+  padding: 12px 20px; border-radius: 10px;
+  font-size: 14px; box-shadow: var(--shadow);
+  animation: pop 0.3s ease;
+  z-index: 10;
+}
+@keyframes pop { from { transform: translate(-50%, 8px); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
+
+@media (max-width: 520px) {
+  .room-id { font-size: 14px; }
+  #room-code { font-size: 22px; }
+}
